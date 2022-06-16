@@ -13,15 +13,15 @@ async fn echo(req_body: String) -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    let HOST: String = env::var("HOST").expect("Host Not Set");
-    let PORT: String = env::var("PORT").expect("Port Not Set");
+    let host: String = env::var("HOST").expect("Host Not Set");
+    let port: String = env::var("PORT").expect("Port Not Set");
     
     HttpServer::new(|| {
         App::new()
             .service(hello)
             .service(echo)
     })
-    .bind(format!("{}:{}", HOST, PORT))?
+    .bind(format!("{}:{}", host, port))?
     .run()
     .await
 }
